@@ -1,0 +1,9 @@
+# https://sovereignco.net robots
+User-agent: *
+Allow: /
+
+# Print-only marketing artifacts — no SEO value
+Disallow: /inventra/posters/
+
+Sitemap: https://sovereignco.net/sitemap.xml
+Sitemap: https://inventra.sovereignco.net/sitemap-inventra.xml

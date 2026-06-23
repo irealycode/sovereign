@@ -901,6 +901,124 @@ img, video { max-width: 100%; }
 .feature-article p { color: var(--ink-soft); font-weight: 300; margin-bottom: 26px; max-width: 520px; }
 
 /* ============================================================
+   Blog article (single post)
+   ============================================================ */
+.blog-body { max-width: 720px; margin: 0 auto; }
+.blog-body > * + * { margin-top: 28px; }
+.blog-body p { color: var(--ink-soft); font-weight: 300; font-size: 1.08rem; line-height: 1.8; }
+.blog-lede { font-size: 1.28rem; color: var(--ink); line-height: 1.7; font-weight: 300; }
+.blog-body h2 {
+  font-weight: 300;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-top: 64px;
+}
+.blog-body h2 + p { margin-top: 18px; }
+.blog-body ul { padding-left: 1.15em; color: var(--ink-soft); font-weight: 300; font-size: 1.08rem; }
+.blog-body li { margin-top: 12px; line-height: 1.7; }
+.blog-body li::marker { color: var(--blue); }
+.blog-body strong { font-weight: 600; color: var(--ink); }
+.blog-body blockquote {
+  border-left: 2px solid var(--blue);
+  padding-left: 28px;
+  margin: 52px 0;
+  font-size: 1.3rem;
+  font-weight: 300;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+/* author byline (sits in the dark hero) */
+.blog-byline {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 30px;
+}
+.blog-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid rgba(255,255,255,0.18);
+  padding: 9px;
+  flex-shrink: 0;
+}
+.blog-byline-name { font-weight: 600; font-size: 0.95rem; color: #fff; }
+.blog-byline-meta { font-size: 0.82rem; color: rgba(255,255,255,0.6); font-weight: 300; }
+
+/* cover image bridging the hero and the article */
+.blog-cover {
+  max-width: 960px;
+  margin: 0 auto 76px;
+}
+.blog-cover img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+/* inline figures inside the prose */
+.blog-figure { margin-top: 48px; }
+.blog-figure img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  display: block;
+}
+.blog-figure figcaption,
+.blog-cover figcaption {
+  margin-top: 14px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* tag chips */
+.blog-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 60px;
+}
+.blog-tag {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+  padding: 7px 15px;
+  border-radius: 999px;
+}
+
+.blog-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px 32px;
+  flex-wrap: wrap;
+  margin-top: 56px;
+  padding-top: 36px;
+  border-top: 1px solid var(--line);
+}
+.blog-foot .article-meta { margin: 0; }
+.article-back {
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  color: var(--blue);
+  transition: opacity 0.3s var(--ease);
+}
+.article-back:hover { opacity: 0.65; }
+
+/* ============================================================
    Contact form
    ============================================================ */
 .contact-layout {

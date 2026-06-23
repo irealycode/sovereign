@@ -3,30 +3,74 @@
 <head>
   <meta charset="UTF-8" />
 
-  <!-- Subdomain routing: on inventra.* serve the inventra/ folder while keeping the bare URL. -->
-  <script>
-  (function () {
-    if (location.hostname.split('.')[0] !== 'inventra') return;
-    // Hide the root page immediately so it doesn't flash before inventra loads.
-    document.documentElement.style.visibility = 'hidden';
-    fetch('/inventra/index.html')
-      .then(function (r) { return r.text(); })
-      .then(function (html) {
-        // Inject a <base> so inventra's relative asset paths resolve to /inventra/.
-        if (!/<base[\s>]/i.test(html)) {
-          html = html.replace(/<head([^>]*)>/i, '<head$1><base href="/inventra/">');
-        }
-        document.open();
-        document.write(html);
-        document.close();
-      })
-      .catch(function () { document.documentElement.style.visibility = ''; });
-  })();
-  </script>
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-i18n="idx.title">Sovereign — Logiciels d'entreprise</title>
-  <meta name="description" data-i18n-content="idx.metaDesc" content="Sovereign est l'entreprise qui conçoit et exploite les systèmes logiciels qui font tourner les entreprises du monde entier." />
+  <title data-i18n="idx.title">Sovereign — Logiciels d'entreprise sur mesure | Rabat, Maroc</title>
+  <meta name="description" data-i18n-content="idx.metaDesc" content="Sovereign conçoit et exploite des logiciels d'entreprise durables depuis Rabat : Inventra, Calendra, Dentimo et Restora. Des produits leaders, pensés pour la décennie, pas pour le trimestre." />
+
+  <meta name="author" content="Sovereign" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <meta name="theme-color" content="#14171c" />
+  <link rel="canonical" href="https://sovereignco.net/" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Sovereign" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:url" content="https://sovereignco.net/" />
+  <meta property="og:title" content="Sovereign — Logiciels d'entreprise sur mesure" />
+  <meta property="og:description" content="Sovereign conçoit et exploite des logiciels d'entreprise durables depuis Rabat : Inventra, Calendra, Dentimo et Restora." />
+  <meta property="og:image" content="https://sovereignco.net/images/og/sovereign.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Sovereign — l'infrastructure des entreprises modernes" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sovereign — Logiciels d'entreprise sur mesure" />
+  <meta name="twitter:description" content="Sovereign conçoit et exploite des logiciels d'entreprise durables depuis Rabat : Inventra, Calendra, Dentimo et Restora." />
+  <meta name="twitter:image" content="https://sovereignco.net/images/og/sovereign.jpg" />
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://sovereignco.net/#organization",
+    "name": "Sovereign",
+    "url": "https://sovereignco.net/",
+    "logo": "https://sovereignco.net/images/logo.svg",
+    "image": "https://sovereignco.net/images/og/sovereign.jpg",
+    "description": "Société de logiciels d'entreprise qui conçoit et exploite Inventra, Calendra, Dentimo et Restora.",
+    "foundingDate": "2019",
+    "email": "hello@sovereignco.net",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Avenue Annakhil, Hay Riad",
+      "addressLocality": "Rabat",
+      "postalCode": "10100",
+      "addressCountry": "MA"
+    },
+    "contactPoint": [
+      { "@type": "ContactPoint", "contactType": "sales", "email": "partnerships@sovereignco.net" },
+      { "@type": "ContactPoint", "contactType": "press", "email": "press@sovereignco.net" },
+      { "@type": "ContactPoint", "contactType": "customer support", "email": "hello@sovereignco.net" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://sovereignco.net/#website",
+    "url": "https://sovereignco.net/",
+    "name": "Sovereign",
+    "inLanguage": "fr",
+    "publisher": { "@id": "https://sovereignco.net/#organization" }
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -159,7 +203,7 @@
             </div>
             <div class="company-meta">
               <span data-i18n="idx.invMeta">Fondé en 2019</span>
-              <a href="inventra/index.html" class="company-link" data-i18n="common.visit">Visiter →</a>
+              <a href="inventra.sovereignco.net" class="company-link" data-i18n="common.visit">Visiter →</a>
             </div>
           </article>
 

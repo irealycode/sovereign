@@ -1,0 +1,15 @@
+{
+  "name": "Sovereign",
+  "short_name": "Sovereign",
+  "description": "La société de logiciels qui conçoit et exploite Inventra, Calendra, Dentimo et Restora.",
+  "lang": "fr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#14171c",
+  "icons": [
+    { "src": "/images/icon.ico", "sizes": "any", "type": "image/x-icon" },
+    { "src": "/images/logo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

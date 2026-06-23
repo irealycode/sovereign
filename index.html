@@ -2,6 +2,28 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
+
+  <!-- Subdomain routing: on inventra.* serve the inventra/ folder while keeping the bare URL. -->
+  <script>
+  (function () {
+    if (location.hostname.split('.')[0] !== 'inventra') return;
+    // Hide the root page immediately so it doesn't flash before inventra loads.
+    document.documentElement.style.visibility = 'hidden';
+    fetch('/inventra/index.html')
+      .then(function (r) { return r.text(); })
+      .then(function (html) {
+        // Inject a <base> so inventra's relative asset paths resolve to /inventra/.
+        if (!/<base[\s>]/i.test(html)) {
+          html = html.replace(/<head([^>]*)>/i, '<head$1><base href="/inventra/">');
+        }
+        document.open();
+        document.write(html);
+        document.close();
+      })
+      .catch(function () { document.documentElement.style.visibility = ''; });
+  })();
+  </script>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title data-i18n="idx.title">Sovereign — Logiciels d'entreprise</title>
   <meta name="description" data-i18n-content="idx.metaDesc" content="Sovereign est l'entreprise qui conçoit et exploite les systèmes logiciels qui font tourner les entreprises du monde entier." />

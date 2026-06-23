@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="cnt.title">Contact — Sovereign</title>
+  <meta name="description" data-i18n-content="cnt.metaDesc" content="Contactez Sovereign — partenariats, presse et bureaux." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header class="site-header" id="header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" data-i18n-aria="nav.brandAria" aria-label="Accueil Sovereign">
+        <img src="images/logo.svg" alt="Sovereign" class="brand-mark" />
+        <span class="brand-word">Sovereign</span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="portfolio.html" data-i18n="nav.portfolio">Produits</a>
+        <a href="insights.html" data-i18n="nav.insights">Perspectives</a>
+        <a href="about.html" data-i18n="nav.firm">L'entreprise</a>
+        <a href="contact.html" class="nav-cta" data-i18n="nav.contact">Contact</a>
+        <div class="lang-switch" role="group" aria-label="Langue">
+          <button type="button" class="lang-btn" data-lang="fr">FR</button>
+          <span class="lang-sep" aria-hidden="true">/</span>
+          <button type="button" class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </nav>
+      <button class="nav-toggle" id="navToggle" data-i18n-aria="nav.menuAria" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="breadcrumb" data-i18n="cnt.breadcrumb"><a href="index.html">Accueil</a> &nbsp;/&nbsp; Contact</p>
+        <span class="page-eyebrow" data-i18n="cnt.eyebrow">Contact</span>
+        <h1 class="page-title" data-i18n="cnt.title2">Parlons-en.</h1>
+        <p class="page-lead" data-i18n="cnt.lead">
+          Que vous soyez fondateur, exploitant ou journaliste — nous lisons
+          chaque message.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container contact-layout">
+
+        <!-- Details -->
+        <div class="contact-aside reveal">
+          <h2 data-i18n="cnt.asideTitle">Contactez l'équipe.</h2>
+          <p data-i18n="cnt.asideBody">
+            Pour les demandes de partenariat et de produit, utilisez le
+            formulaire ou écrivez-nous directement. Nous répondons sous deux
+            jours ouvrés.
+          </p>
+
+          <div class="contact-detail">
+            <span class="label" data-i18n="cnt.lblPartner">Partenariats</span>
+            <a href="mailto:partnerships@sovereign.com">partnerships@sovereign.com</a>
+          </div>
+          <div class="contact-detail">
+            <span class="label" data-i18n="cnt.lblPress">Presse</span>
+            <a href="mailto:press@sovereign.com">press@sovereign.com</a>
+          </div>
+          <div class="contact-detail">
+            <span class="label" data-i18n="cnt.lblGeneral">Général</span>
+            <a href="mailto:hello@sovereign.com">hello@sovereign.com</a>
+          </div>
+          <div class="contact-detail">
+            <span class="label" data-i18n="cnt.lblHq">Siège</span>
+            <span data-i18n="cnt.hqAddr">Avenue Annakhil, Hay Riad, Rabat 10100</span>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <form class="contact-form reveal" id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="fname" data-i18n="cnt.fFirst">Prénom</label>
+              <input type="text" id="fname" name="fname" autocomplete="given-name" />
+            </div>
+            <div class="form-field">
+              <label for="lname" data-i18n="cnt.fLast">Nom</label>
+              <input type="text" id="lname" name="lname" autocomplete="family-name" />
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="email" data-i18n="cnt.fEmail">E-mail</label>
+            <input type="email" id="email" name="email" autocomplete="email" />
+          </div>
+          <div class="form-field">
+            <label for="company" data-i18n="cnt.fCompany">Entreprise</label>
+            <input type="text" id="company" name="company" autocomplete="organization" />
+          </div>
+          <div class="form-field">
+            <label for="reason" data-i18n="cnt.fReason">Je vous contacte au sujet de</label>
+            <select id="reason" name="reason">
+              <option data-i18n="cnt.opt1">Un partenariat</option>
+              <option data-i18n="cnt.opt2">Rejoindre une équipe produit</option>
+              <option data-i18n="cnt.opt3">Presse et médias</option>
+              <option data-i18n="cnt.opt4">Autre chose</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="message" data-i18n="cnt.fMessage">Message</label>
+            <textarea id="message" name="message" data-i18n-placeholder="cnt.phMessage" placeholder="Dites-nous en quelques mots ce que vous construisez…"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-submit" data-i18n="cnt.btnSubmit">Envoyer le message</button>
+          <p class="form-note" id="formNote" data-i18n="cnt.formNote">Formulaire de démonstration — rien n'est enregistré ni envoyé.</p>
+        </form>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="images/logo.svg" alt="Sovereign" class="footer-mark" />
+        <p data-i18n="footer.tagline">L'entreprise qui conçoit Inventra, Calendra, Dentimo et Restora.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <span class="footer-head" data-i18n="footer.headProducts">Produits</span>
+          <a href="portfolio.html#inventra">Inventra</a>
+          <a href="portfolio.html#calendra">Calendra</a>
+          <a href="portfolio.html#dentimo">Dentimo</a>
+          <a href="portfolio.html#restora">Restora</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-head" data-i18n="footer.headFirm">Entreprise</span>
+          <a href="about.html" data-i18n="footer.linkFirm">L'entreprise</a>
+          <a href="insights.html" data-i18n="footer.linkInsights">Perspectives</a>
+          <a href="contact.html" data-i18n="footer.linkContact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-head" data-i18n="footer.headLegal">Mentions légales</span>
+          <a href="#" data-i18n="footer.privacy">Confidentialité</a>
+          <a href="#" data-i18n="footer.terms">Conditions</a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-base">
+      <span>© <span data-year>2026</span> <span data-i18n="footer.rights">Sovereign. Tous droits réservés.</span></span>
+      <span data-i18n="footer.cities">Rabat, Maroc</span>
+    </div>
+  </footer>
+
+  <script src="i18n.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Demo-only submit handler
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var note = document.getElementById("formNote");
+      var lang = document.documentElement.lang;
+      note.textContent = lang === "en"
+        ? "Thank you — we'll be in touch shortly. (Demo: nothing was actually sent.)"
+        : "Merci — nous reviendrons vers vous très vite. (Démo : rien n'a réellement été envoyé.)";
+      note.style.color = "#4f93c4";
+      this.reset();
+    });
+  </script>
+</body>
+</html>

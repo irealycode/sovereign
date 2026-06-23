@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<title>Inventra — Affiche 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page{size:A3 portrait;margin:0}
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --ink-900:#171717;--ink-700:#404040;--ink-600:#525252;--ink-500:#737373;
+    --ink-200:#e8e8e8;--ink-100:#f5f5f5;--ink-50:#fafafa;
+    --accent-50:#eef2ff;--accent-100:#e0e7ff;--accent-300:#a5b4fc;--accent-500:#6366f1;--accent-600:#4f46e5;
+    --grad-dark:linear-gradient(155deg,#0c0b0e 0%,#0d0320 100%);
+    --grad-cta:linear-gradient(180deg,#6366f1 0%,#4f46e5 100%);
+  }
+  body{font-family:"Inter",sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .poster{width:297mm;height:420mm;background:var(--grad-dark);color:#fff;position:relative;overflow:hidden;padding:26mm 24mm 0;display:flex;flex-direction:column}
+  .blob{position:absolute;border-radius:50%;filter:blur(95px);pointer-events:none}
+  .b1{width:280mm;height:280mm;background:#4f46e5;opacity:.42;top:-150mm;right:-110mm}
+  .b2{width:200mm;height:200mm;background:#6366f1;opacity:.22;bottom:30mm;left:-90mm}
+
+  /* header */
+  .top{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center}
+  .logo{height:13mm}
+  .eyebrow{font-size:4.4mm;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--accent-300);background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.32);padding:2.5mm 5mm;border-radius:999px}
+
+  h1{position:relative;z-index:2;font-family:"Anek Tamil";font-weight:700;font-size:23mm;line-height:1.04;letter-spacing:-.02em;margin:14mm 0 5mm}
+  h1 .hl{background:linear-gradient(90deg,#a5b4fc,#c7d2fe);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lead{position:relative;z-index:2;font-size:6.4mm;line-height:1.45;color:rgba(255,255,255,.78);max-width:215mm}
+
+  /* app showcase */
+  .stage{position:relative;z-index:2;margin:14mm 0 0;flex:1;display:flex;justify-content:center;align-items:flex-start}
+  .app{width:235mm;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:8mm;padding:5mm;box-shadow:0 30mm 60mm -24mm rgba(0,0,0,.7);backdrop-filter:blur(4px)}
+  .app .bar{display:flex;gap:2mm;padding:0 2mm 4mm}
+  .app .bar i{width:4mm;height:4mm;border-radius:50%;background:rgba(255,255,255,.25)}
+  .screen{background:#fff;border-radius:5mm;overflow:hidden;color:var(--ink-700);display:grid;grid-template-columns:1.35fr 1fr}
+  /* left: product grid */
+  .left{padding:6mm;border-right:1px solid var(--ink-100)}
+  .scan{display:flex;align-items:center;gap:3mm;background:var(--ink-50);border:1px solid var(--ink-200);border-radius:3mm;padding:4mm;font-size:4mm;color:var(--ink-500);margin-bottom:5mm}
+  .scan .ic{width:6mm;height:6mm;color:var(--accent-600)}
+  .prods{display:grid;grid-template-columns:repeat(3,1fr);gap:3.5mm}
+  .prod{background:#fff;border:1px solid var(--ink-200);border-radius:3.5mm;padding:4mm;box-shadow:0 1mm 3mm -2mm rgba(15,23,42,.2)}
+  .prod .sw{height:11mm;border-radius:2.5mm;background:linear-gradient(135deg,var(--accent-100),var(--accent-50));margin-bottom:3mm;display:flex;align-items:center;justify-content:center;color:var(--accent-600)}
+  .prod .nm{font-size:3.5mm;font-weight:600;color:var(--ink-900);line-height:1.2}
+  .prod .pr{font-size:3.4mm;color:var(--ink-500);margin-top:1mm}
+  /* right: cart */
+  .right{padding:6mm;display:flex;flex-direction:column;background:var(--ink-50)}
+  .right h4{font-family:"Anek Tamil";font-size:5mm;color:var(--ink-900);margin-bottom:4mm;display:flex;justify-content:space-between;align-items:center}
+  .right h4 .badge{font-size:3mm;font-weight:600;background:var(--accent-50);color:var(--accent-600);padding:1mm 3mm;border-radius:999px}
+  .ci{display:flex;justify-content:space-between;align-items:center;font-size:3.6mm;padding:3mm 0;border-bottom:1px solid var(--ink-200)}
+  .ci .q{color:var(--accent-600);font-weight:700;margin-right:2mm}
+  .ci b{color:var(--ink-900);font-weight:600}
+  .tot{margin-top:auto;padding-top:4mm}
+  .tline{display:flex;justify-content:space-between;font-size:3.6mm;color:var(--ink-500);margin-bottom:2mm}
+  .tline.grand{font-family:"Anek Tamil";font-size:6mm;font-weight:700;color:var(--ink-900);margin:3mm 0 4mm;border-top:1px solid var(--ink-200);padding-top:3mm}
+  .pay{display:flex;gap:2.5mm}
+  .pay .b{flex:1;text-align:center;font-size:3.6mm;font-weight:600;padding:3.5mm;border-radius:2.5mm;border:1px solid var(--ink-200);color:var(--ink-700);background:#fff}
+  .pay .b.on{background:var(--grad-cta);color:#fff;border:0}
+
+  /* benefits strip */
+  .benes{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);gap:8mm 4mm;margin:11mm 0 0}
+  .be{text-align:center}
+  .be .ic{width:13mm;height:13mm;margin:0 auto 3mm;border-radius:3.5mm;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;color:var(--accent-300)}
+  .be .ic svg{width:7mm;height:7mm}
+  .be .t{font-size:4mm;font-weight:600;color:#fff;line-height:1.25}
+  .be .s{font-size:3.4mm;color:rgba(255,255,255,.6);margin-top:1mm}
+
+  /* footer cta */
+  .foot{position:relative;z-index:2;margin:11mm 0 0;padding:8mm 0;border-top:1px solid rgba(255,255,255,.14);display:flex;justify-content:space-between;align-items:center}
+  .foot .big{font-family:"Anek Tamil";font-weight:700;font-size:7.5mm}
+  .foot .sub{font-size:4.4mm;color:rgba(255,255,255,.6);margin-top:2mm}
+  .qr{display:flex;align-items:center;gap:4mm}
+  .qr .qt{text-align:right}
+  .qr .qt .q1{font-family:"Anek Tamil";font-weight:700;font-size:5mm}
+  .qr .qt .q2{font-size:3.8mm;color:rgba(255,255,255,.6);margin-top:1mm}
+  .qr img{width:32mm;height:32mm;background:#fff;border-radius:2.5mm;padding:2mm;box-shadow:0 6mm 14mm -8mm rgba(0,0,0,.6)}
+  .by{position:relative;z-index:2;text-align:center;padding-bottom:9mm;display:flex;justify-content:center;align-items:center;gap:2.5mm;font-size:3.8mm;color:rgba(255,255,255,.38)}
+  .by img{height:5.5mm;opacity:.75}
+</style>
+</head>
+<body>
+<div class="poster">
+  <span class="blob b1"></span><span class="blob b2"></span>
+
+  <div class="top">
+    <img class="logo" src="../assets/logo.svg" alt="Inventra" />
+    <span class="eyebrow">Caisse &amp; stock</span>
+  </div>
+
+  <h1>La caisse moderne<br>de <span class="hl">votre boutique.</span></h1>
+  <p class="lead">Scannez, encaissez, suivez votre stock — le tout dans une application claire, sur votre propre matériel.</p>
+
+  <!-- App showcase -->
+  <div class="stage">
+    <div class="app">
+      <div class="bar"><i></i><i></i><i></i></div>
+      <div class="screen">
+        <!-- product side -->
+        <div class="left">
+          <div class="scan">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 5v14M7 5v14M11 5v14M15 5v14M19 5v14M21 5v14"/></svg>
+            Scanner un code-barres ou rechercher…
+          </div>
+          <div class="prods">
+            <div class="prod"><div class="sw"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg></div><div class="nm">Café 250g</div><div class="pr">42,00 DH</div></div>
+            <div class="prod"><div class="sw"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 2h8l-1 5H9ZM9 7v13a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V7"/></svg></div><div class="nm">Lait 1L</div><div class="pr">9,50 DH</div></div>
+            <div class="prod"><div class="sw"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16l-1.2 12.3a2 2 0 0 1-2 1.7H7.2a2 2 0 0 1-2-1.7Z"/><path d="M8 7a4 4 0 0 1 8 0"/></svg></div><div class="nm">Pain</div><div class="pr">3,00 DH</div></div>
+            <div class="prod"><div class="sw"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 9h6"/></svg></div><div class="nm">Jus 1L</div><div class="pr">14,00 DH</div></div>
+            <div class="prod"><div class="sw"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></div><div class="nm">Cahier</div><div class="pr">12,00 DH</div></div>
+            <div class="prod"><div class="sw"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2a7 7 0 0 0-7 7c0 3 2 4 2 7h10c0-3 2-4 2-7a7 7 0 0 0-7-7Z"/><path d="M9 23h6"/></svg></div><div class="nm">Ampoule</div><div class="pr">25,00 DH</div></div>
+          </div>
+        </div>
+        <!-- cart side -->
+        <div class="right">
+          <h4>Panier <span class="badge">3 articles</span></h4>
+          <div class="ci"><span><span class="q">2×</span>Café 250g</span><b>84,00</b></div>
+          <div class="ci"><span><span class="q">1×</span>Lait 1L</span><b>9,50</b></div>
+          <div class="ci"><span><span class="q">3×</span>Pain</span><b>9,00</b></div>
+          <div class="tot">
+            <div class="tline"><span>Sous-total</span><span>102,50</span></div>
+            <div class="tline"><span>TVA</span><span>10,25</span></div>
+            <div class="tline grand"><span>Total</span><span>112,75 DH</span></div>
+            <div class="pay"><span class="b on">Espèces</span><span class="b">Carte</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- benefits -->
+  <div class="benes">
+    <div class="be"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/></svg></div><div class="t">Stock en direct</div><div class="s">alertes seuil bas</div></div>
+    <div class="be"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg></div><div class="t">Clients &amp; fidélité</div><div class="s">au comptoir</div></div>
+    <div class="be"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div><div class="t">Rapports clairs</div><div class="s">marge &amp; Z-Report</div></div>
+    <div class="be"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14 0M1.4 9a16 16 0 0 1 21.2 0M8.5 16.1a6 6 0 0 1 7 0M12 20h.01"/><line x1="2" y1="2" x2="22" y2="22"/></svg></div><div class="t">100% hors ligne</div><div class="s">sans abonnement</div></div>
+
+    <div class="be"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg></div><div class="t">Tickets thermiques</div><div class="s">58 / 80 mm</div></div>
+    <div class="be"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div class="t">Plusieurs caisses</div><div class="s">sur le même Wi-Fi</div></div>
+    <div class="be"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></div><div class="t">Sauvegarde auto</div><div class="s">chaque nuit</div></div>
+    <div class="be"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-7m7 0a2 2 0 0 0-2-2h-3l-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2Z"/><path d="m9 14 2 2 4-4"/></svg></div><div class="t">Bons de commande</div><div class="s">achats fournisseurs</div></div>
+  </div>
+
+  <!-- cta -->
+  <div class="foot">
+    <div>
+      <div class="big">Demandez une démonstration gratuite</div>
+      <div class="sub">www.inventra.app&nbsp; ·&nbsp; contact@inventra.app</div>
+    </div>
+    <div class="qr">
+      <div class="qt"><div class="q1">Scannez pour<br>nous découvrir</div><div class="q2">www.inventra.app</div></div>
+      <img src="../assets/qr-website.svg" alt="QR www.inventra.app" />
+    </div>
+  </div>
+
+  <div class="by">By <img src="../assets/sovereign.svg" alt="Sovereign" /> Sovereign</div>
+</div>
+</body>
+</html>

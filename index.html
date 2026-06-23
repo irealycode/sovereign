@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="idx.title">Sovereign — Logiciels d'entreprise</title>
+  <meta name="description" data-i18n-content="idx.metaDesc" content="Sovereign est l'entreprise qui conçoit et exploite les systèmes logiciels qui font tourner les entreprises du monde entier." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header" id="header">
+    <div class="container header-inner">
+      <a href="#top" class="brand" data-i18n-aria="nav.brandAria" aria-label="Accueil Sovereign">
+        <img src="images/logo.svg" alt="Sovereign" class="brand-mark" />
+        <span class="brand-word">Sovereign</span>
+      </a>
+
+      <nav class="nav" id="nav">
+        <a href="portfolio.html" data-i18n="nav.portfolio">Produits</a>
+        <a href="insights.html" data-i18n="nav.insights">Perspectives</a>
+        <a href="about.html" data-i18n="nav.firm">L'entreprise</a>
+        <a href="contact.html" class="nav-cta" data-i18n="nav.contact">Contact</a>
+        <div class="lang-switch" role="group" aria-label="Langue">
+          <button type="button" class="lang-btn" data-lang="fr">FR</button>
+          <span class="lang-sep" aria-hidden="true">/</span>
+          <button type="button" class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </nav>
+
+      <button class="nav-toggle" id="navToggle" data-i18n-aria="nav.menuAria" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ===== Hero (video banner) ===== -->
+    <section class="hero">
+      <div class="hero-media">
+        <video class="hero-video" autoplay muted loop playsinline poster="">
+          <source src="media/banner.mp4" type="video/mp4" />
+        </video>
+        <div class="hero-scrim"></div>
+      </div>
+
+      <div class="container hero-inner">
+        <p class="eyebrow reveal" data-i18n="idx.heroEyebrow">Entreprise logicielle · Depuis 2019</p>
+        <h1 class="hero-title reveal" data-i18n="idx.heroTitle">
+          L'infrastructure<br />au cœur de l'entreprise moderne.
+        </h1>
+        <p class="hero-sub reveal" data-i18n="idx.heroSub">
+          Depuis notre base à Rabat, Sovereign conçoit et exploite les
+          systèmes logiciels qui font discrètement tourner les entreprises —
+          de la gestion des stocks à la planification, des soins à la
+          restauration.
+        </p>
+        <div class="hero-actions reveal">
+          <a href="portfolio.html" class="btn btn-primary" data-i18n="idx.heroCta1">Voir les produits</a>
+          <a href="about.html" class="btn btn-ghost" data-i18n="idx.heroCta2">À propos de l'entreprise</a>
+        </div>
+      </div>
+
+      <div class="hero-scroll reveal">
+        <span data-i18n="idx.scroll">Défiler</span>
+        <div class="hero-scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ===== Statement ===== -->
+    <section class="statement">
+      <div class="container">
+        <p class="statement-text reveal" data-i18n="idx.statement">
+          Nous développons une gamme ciblée de produits logiciels — chacun
+          leader de sa catégorie, chacun conçu pour
+          <span class="accent">durer plutôt que séduire</span>. Discrets par
+          nature, exigeants par principe.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Metrics ===== -->
+    <section class="metrics">
+      <div class="container metrics-grid">
+        <div class="metric reveal">
+          <span class="metric-value" data-target="3" data-suffix="">0</span>
+          <span class="metric-label" data-i18n="idx.metric1">Produits</span>
+        </div>
+        <div class="metric reveal">
+          <span class="metric-value" data-target="1200" data-suffix="+">0</span>
+          <span class="metric-label" data-i18n="idx.metric2">Entreprises servies</span>
+        </div>
+        <div class="metric reveal">
+          <span class="metric-value" data-target="6" data-suffix="">0</span>
+          <span class="metric-label" data-i18n="idx.metric3">Pays</span>
+        </div>
+        <div class="metric reveal">
+          <span class="metric-value" data-target="99" data-suffix="%">0</span>
+          <span class="metric-label" data-i18n="idx.metric4">Disponibilité, depuis l'origine</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Portfolio ===== -->
+    <section class="portfolio" id="portfolio">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-index" data-i18n="idx.secIndex1">01 — Produits</span>
+          <h2 class="section-title" data-i18n="idx.secTitle1">Quatre produits. Une exigence.</h2>
+          <p class="section-lead" data-i18n="idx.secLead1">
+            Des logiciels conçus pour être fiables une décennie, pas un trimestre.
+          </p>
+        </div>
+
+        <div class="portfolio-list">
+
+          <article class="company reveal">
+            <div class="company-logo">
+              <img src="images/inventra.svg" alt="Inventra" />
+            </div>
+            <div class="company-body">
+              <p class="company-sector" data-i18n="idx.invSector">Stocks et intelligence d'approvisionnement</p>
+              <p class="company-desc" data-i18n="idx.invDesc">
+                Une plateforme de gestion des stocks de précision pour
+                distributeurs et fabricants — stock en temps réel, prévision
+                de la demande et orchestration des entrepôts dans un registre
+                unique.
+              </p>
+            </div>
+            <div class="company-meta">
+              <span data-i18n="idx.invMeta">Fondé en 2019</span>
+              <a href="inventra/index.html" class="company-link" data-i18n="common.visit">Visiter →</a>
+            </div>
+          </article>
+
+          <article class="company reveal">
+            <div class="company-logo">
+              <img src="images/calendra.svg" alt="Calendra" />
+            </div>
+            <div class="company-body">
+              <p class="company-sector" data-i18n="idx.calSector">Planification et personnel</p>
+              <p class="company-desc" data-i18n="idx.calDesc">
+                Planification des rendez-vous, des ressources et des équipes
+                pour les entreprises de services — une réservation élégante en
+                surface, des opérations rigoureuses en coulisses.
+              </p>
+            </div>
+            <div class="company-meta">
+              <span data-i18n="idx.calMeta">Lancé en 2021</span>
+              <a href="#" class="company-link" data-i18n="common.visit">Visiter →</a>
+            </div>
+          </article>
+
+          <article class="company reveal">
+            <div class="company-logo">
+              <img src="images/dentimo.svg" alt="Dentimo" />
+            </div>
+            <div class="company-body">
+              <p class="company-sector" data-i18n="idx.denSector">Gestion de cabinet · Santé</p>
+              <p class="company-desc" data-i18n="idx.denDesc">
+                Le système d'exploitation des cabinets dentaires et cliniques —
+                dossiers patients, facturation et rappels, réunis avec la
+                discrétion qu'exige la santé.
+              </p>
+            </div>
+            <div class="company-meta">
+              <span data-i18n="idx.denMeta">Fondé en 2022</span>
+              <a href="#" class="company-link" data-i18n="common.visit">Visiter →</a>
+            </div>
+          </article>
+
+          <article class="company reveal">
+            <div class="company-logo">
+              <img src="images/restora.svg" alt="Restora" />
+            </div>
+            <div class="company-body">
+              <p class="company-sector" data-i18n="idx.resSector">Gestion de restaurant · Hôtellerie-restauration</p>
+              <p class="company-desc" data-i18n="idx.resDesc">
+                Un système complet de gestion de restaurant — point de vente,
+                gestion des tables et de la salle, menu et flux en cuisine,
+                réunis pour un service fluide de la salle aux fourneaux.
+              </p>
+            </div>
+            <div class="company-meta">
+              <span data-i18n="idx.resMeta">Lancé en 2024</span>
+              <a href="#" class="company-link" data-i18n="common.visit">Visiter →</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Approach ===== -->
+    <section class="approach" id="approach">
+      <div class="container approach-grid">
+        <div class="section-head reveal">
+          <span class="section-index" data-i18n="idx.secIndex2">02 — Approche</span>
+          <h2 class="section-title" data-i18n="idx.secTitle2">Bâtisseurs d'abord,<br />exploitants toujours.</h2>
+          <p class="section-lead" data-i18n="idx.secLead2">
+            Nous concevons ce que nous exploitons, et nous l'exploitons sur le long terme.
+          </p>
+        </div>
+
+        <div class="principles">
+          <div class="principle reveal">
+            <h3 data-i18n="idx.prinTitle1">Permanence</h3>
+            <p data-i18n="idx.prinBody1">
+              Nous construisons pour durer. Nos produits sont menés pour la
+              croissance composée à long terme, sans la pression d'une sortie
+              forcée.
+            </p>
+          </div>
+          <div class="principle reveal">
+            <h3 data-i18n="idx.prinTitle2">Concentration</h3>
+            <p data-i18n="idx.prinBody2">
+              Chaque produit résout un problème de bout en bout. La profondeur
+              dans une discipline prime sur l'étendue.
+            </p>
+          </div>
+          <div class="principle reveal">
+            <h3 data-i18n="idx.prinTitle3">Discrétion</h3>
+            <p data-i18n="idx.prinBody3">
+              Nos logiciels gèrent les opérations les plus sensibles d'une
+              entreprise. La confiance est le produit.
+            </p>
+          </div>
+          <div class="principle reveal">
+            <h3 data-i18n="idx.prinTitle4">Savoir-faire</h3>
+            <p data-i18n="idx.prinBody4">
+              Sobriété dans le design, rigueur dans l'ingénierie. Les meilleurs
+              systèmes sont ceux auxquels on ne pense jamais.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== The Firm ===== -->
+    <section class="firm" id="firm">
+      <div class="container firm-inner">
+        <div class="section-head reveal">
+          <span class="section-index" data-i18n="idx.secIndex3">03 — L'entreprise</span>
+          <h2 class="section-title" data-i18n="idx.secTitle3">La discrétion est un choix.</h2>
+        </div>
+        <div class="firm-copy reveal">
+          <p data-i18n="idx.firmP1">
+            Sovereign est une entreprise privée qui conçoit et exploite des
+            logiciels d'entreprise. Chacun de nos produits porte son propre nom
+            et sa propre identité, tout en partageant la direction technique et
+            la discipline opérationnelle qui définissent notre façon de
+            construire.
+          </p>
+          <p data-i18n="idx.firmP2">
+            Nous ne sommes pas un fonds avec un compte à rebours. Nous
+            construisons sur le long terme, et nous laissons le travail parler.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contact / CTA ===== -->
+    <section class="contact" id="contact">
+      <div class="container contact-inner reveal">
+        <p class="eyebrow" data-i18n="cta.eyebrow">Bâtisseurs et exploitants</p>
+        <h2 class="contact-title" data-i18n="cta.title">
+          Envie de construire<br />avec nous ?
+        </h2>
+        <p class="contact-sub" data-i18n="cta.sub">
+          Nous recherchons en permanence des personnes exceptionnelles pour
+          concevoir et exploiter des logiciels qui durent — de la première
+          ligne de code au leadership de catégorie.
+        </p>
+        <a href="mailto:partnerships@sovereign.com" class="btn btn-primary btn-lg">
+          partnerships@sovereign.com
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="images/logo.svg" alt="Sovereign" class="footer-mark" />
+        <p data-i18n="footer.tagline">L'entreprise qui conçoit Inventra, Calendra, Dentimo et Restora.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <span class="footer-head" data-i18n="footer.headProducts">Produits</span>
+          <a href="portfolio.html#inventra">Inventra</a>
+          <a href="portfolio.html#calendra">Calendra</a>
+          <a href="portfolio.html#dentimo">Dentimo</a>
+          <a href="portfolio.html#restora">Restora</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-head" data-i18n="footer.headFirm">Entreprise</span>
+          <a href="about.html" data-i18n="footer.linkFirm">L'entreprise</a>
+          <a href="insights.html" data-i18n="footer.linkInsights">Perspectives</a>
+          <a href="contact.html" data-i18n="footer.linkContact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-head" data-i18n="footer.headLegal">Mentions légales</span>
+          <a href="#" data-i18n="footer.privacy">Confidentialité</a>
+          <a href="#" data-i18n="footer.terms">Conditions</a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-base">
+      <span>© <span data-year>2026</span> <span data-i18n="footer.rights">Sovereign. Tous droits réservés.</span></span>
+      <span data-i18n="footer.cities">Rabat, Maroc</span>
+    </div>
+  </footer>
+
+  <script src="i18n.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

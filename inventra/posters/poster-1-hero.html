@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<title>Inventra — Affiche 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page{size:A3 portrait;margin:0}
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--grad-dark:linear-gradient(155deg,#0c0b0e 0%,#0d0320 100%);--accent:#6366f1;--accent-300:#a5b4fc}
+  body{font-family:"Inter",sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .poster{width:297mm;height:420mm;background:var(--grad-dark);color:#fff;position:relative;overflow:hidden;padding:30mm 28mm;display:flex;flex-direction:column}
+  .blob{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none}
+  .b1{width:300mm;height:300mm;background:#4f46e5;opacity:.4;top:-120mm;right:-120mm}
+  .b2{width:220mm;height:220mm;background:#6366f1;opacity:.28;bottom:-100mm;left:-90mm}
+  .logo{height:14mm;position:relative;z-index:2}
+  .eyebrow{position:relative;z-index:2;margin-top:auto;display:inline-flex;align-items:center;gap:2mm;font-size:5mm;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--accent-300);background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.32);padding:2.5mm 5mm;border-radius:999px;align-self:flex-start}
+  h1{font-family:"Anek Tamil";font-weight:700;font-size:30mm;line-height:1.02;letter-spacing:-.02em;margin:8mm 0 7mm;position:relative;z-index:2}
+  h1 .hl{background:linear-gradient(90deg,#a5b4fc,#c7d2fe);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lead{position:relative;z-index:2;font-size:8mm;line-height:1.4;color:rgba(255,255,255,.8);max-width:200mm}
+  .feats{position:relative;z-index:2;display:flex;gap:4mm;flex-wrap:wrap;margin-top:12mm}
+  .chip{font-size:5.5mm;font-weight:600;padding:3.5mm 6mm;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16)}
+  .foot{position:relative;z-index:2;margin-top:auto;padding-top:11mm;border-top:1px solid rgba(255,255,255,.14);display:flex;justify-content:space-between;align-items:flex-end}
+  .foot .big{font-family:"Anek Tamil";font-weight:700;font-size:8mm}
+  .foot .sub{font-size:5mm;color:rgba(255,255,255,.6);margin-top:2mm}
+  .qr{display:flex;align-items:center;gap:5mm}
+  .qr .qtext{text-align:right}
+  .qr .qtext .q1{font-family:"Anek Tamil";font-weight:700;font-size:5.5mm}
+  .qr .qtext .q2{font-size:4mm;color:rgba(255,255,255,.6);margin-top:1mm}
+  .qr img{width:38mm;height:38mm;background:#fff;border-radius:3mm;padding:2.5mm;box-shadow:0 6mm 16mm -8mm rgba(0,0,0,.6)}
+  .by{position:absolute;bottom:12mm;left:50%;transform:translateX(-50%);z-index:3;display:flex;align-items:center;gap:2.5mm;font-size:4mm;color:rgba(255,255,255,.4)}
+  .by img{height:6mm;opacity:.75}
+</style>
+</head>
+<body>
+<div class="poster">
+  <span class="blob b1"></span><span class="blob b2"></span>
+
+  <img class="logo" src="../assets/logo.svg" alt="Inventra" />
+
+  <span class="eyebrow">● Caisse &amp; gestion de stock</span>
+  <h1>Tenez votre boutique,<br><span class="hl">sans abonnement,<br>sans internet.</span></h1>
+  <p class="lead">Caisse, stock, clients et équipe réunis dans un seul logiciel — installé sur votre propre matériel.</p>
+
+  <div class="feats">
+    <span class="chip">✓ 100% hors ligne</span>
+    <span class="chip">✓ Plusieurs caisses en réseau</span>
+    <span class="chip">✓ Français &amp; anglais</span>
+  </div>
+
+  <div class="foot">
+    <div>
+      <div class="big">Demandez votre démo gratuite</div>
+      <div class="sub">www.inventra.app&nbsp; ·&nbsp; contact@inventra.app</div>
+    </div>
+    <div class="qr">
+      <div class="qtext"><div class="q1">Scannez<br>pour visiter</div><div class="q2">le site Inventra</div></div>
+      <img src="../assets/qr-website.svg" alt="QR www.inventra.app" />
+    </div>
+  </div>
+
+  <div class="by">By <img src="../assets/sovereign.svg" alt="Sovereign" /> Sovereign</div>
+</div>
+</body>
+</html>

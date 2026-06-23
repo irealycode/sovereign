@@ -1,0 +1,11 @@
+const React = require('react');
+const { renderToStaticMarkup } = require('react-dom/server');
+const { QRCodeSVG } = require('qrcode.react');
+const fs = require('fs');
+const url = process.argv[2] || 'https://www.inventra.app';
+const out = process.argv[3] || 'marketing/assets/qr-website.svg';
+const el = React.createElement(QRCodeSVG, { value: url, size: 1024, level: 'M', bgColor: '#ffffff', fgColor: '#0c0b0e', marginSize: 2 });
+let svg = renderToStaticMarkup(el);
+if (!svg.includes('xmlns=')) svg = svg.replace('<svg ', '<svg xmlns="http://www.w3.org/2000/svg" ');
+fs.writeFileSync(out, '<?xml version="1.0" encoding="UTF-8"?>\n' + svg + '\n');
+console.log('wrote', out);

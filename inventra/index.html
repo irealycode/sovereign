@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Inventra — La caisse et la gestion de stock pour votre boutique</title>
+<meta name="description" content="Inventra réunit caisse, stock, clients et équipe dans un seul logiciel de bureau. 100% hors ligne, sans abonnement, sur votre propre matériel." />
+<link rel="icon" type="image/x-icon" href="assets/icon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink-900:#171717; --ink-800:#262626; --ink-700:#404040; --ink-600:#525252;
+    --ink-500:#737373; --ink-400:#a3a3a3; --ink-300:#d4d4d4; --ink-200:#e8e8e8;
+    --ink-100:#f5f5f5; --ink-50:#fafafa;
+    --accent-300:#a5b4fc; --accent-400:#818cf8; --accent-500:#6366f1;
+    --accent-600:#4f46e5; --accent-700:#4338ca; --accent-50:#eef2ff; --accent-100:#e0e7ff;
+    --grad-cta:linear-gradient(180deg,#6366f1 0%,#4f46e5 100%);
+    --grad-dark:linear-gradient(155deg,#0c0b0e 0%,#0d0320 100%);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Inter",system-ui,sans-serif;color:var(--ink-800);background:var(--ink-50);line-height:1.55;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.display{font-family:"Anek Tamil",sans-serif;letter-spacing:-.02em;line-height:1.08}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  .btn{display:inline-flex;align-items:center;gap:.55rem;padding:.85rem 1.5rem;border-radius:.7rem;font-weight:600;font-size:.98rem;transition:all .15s;cursor:pointer;border:0}
+  .btn-primary{background:var(--grad-cta);color:#fff;box-shadow:0 10px 24px -8px rgba(79,70,229,.55),inset 0 1px 0 rgba(255,255,255,.2)}
+  .btn-primary:hover{filter:brightness(1.07);transform:translateY(-1px)}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.22)}
+  .btn-ghost:hover{background:rgba(255,255,255,.15)}
+  .btn-light{background:#fff;color:var(--ink-900);border:1px solid var(--ink-200)}
+  .btn-light:hover{border-color:var(--ink-300);background:var(--ink-50)}
+
+  /* ---------- Top bar ---------- */
+  header{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);background:rgba(250,250,250,.8);border-bottom:1px solid var(--ink-200)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:.65rem;font-family:"Anek Tamil";font-weight:700;font-size:1.35rem;color:var(--ink-900)}
+  .mark{width:34px;height:34px;border-radius:9px;overflow:hidden;flex-shrink:0;box-shadow:0 2px 6px rgba(15,23,42,.12)}
+  .mark img{width:100%;height:100%;display:block}
+  .nav-links{display:flex;gap:2rem;font-size:.93rem;font-weight:500;color:var(--ink-600)}
+  .nav-links a:hover{color:var(--ink-900)}
+  @media(max-width:760px){.nav-links{display:none}}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;overflow:hidden;background:var(--grad-dark);color:#fff;padding:96px 0 120px}
+  .hero .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.45;pointer-events:none}
+  .blob1{width:520px;height:520px;background:#4f46e5;top:-160px;right:-120px}
+  .blob2{width:420px;height:420px;background:#6366f1;bottom:-180px;left:-100px;opacity:.3}
+  .hero-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:40px}}
+  .eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.82rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--accent-300);background:rgba(99,102,241,.14);border:1px solid rgba(99,102,241,.3);padding:.4rem .85rem;border-radius:999px;margin-bottom:1.4rem}
+  .hero h1{font-size:clamp(2.5rem,5vw,3.85rem);font-weight:700;margin-bottom:1.3rem}
+  .hero h1 .hl{background:linear-gradient(90deg,#a5b4fc,#c7d2fe);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.lead{font-size:1.18rem;color:rgba(255,255,255,.78);max-width:34ch;margin-bottom:2.2rem}
+  .hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+  .hero-note{margin-top:1.4rem;font-size:.86rem;color:rgba(255,255,255,.55);display:flex;gap:1.4rem;flex-wrap:wrap}
+  .hero-note span{display:inline-flex;align-items:center;gap:.4rem}
+
+  /* mock window */
+  .mock{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:14px;box-shadow:0 40px 80px -30px rgba(0,0,0,.6);backdrop-filter:blur(6px)}
+  .mock-bar{display:flex;gap:.4rem;padding:0 4px 12px}
+  .mock-bar i{width:11px;height:11px;border-radius:50%;background:rgba(255,255,255,.25)}
+  .mock-body{background:#fff;border-radius:10px;overflow:hidden;color:var(--ink-800)}
+  .mb-top{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--ink-100)}
+  .mb-top b{font-family:"Anek Tamil";font-size:1.05rem;color:var(--ink-900)}
+  .pill{font-size:.7rem;font-weight:600;padding:.25rem .6rem;border-radius:999px;background:var(--accent-50);color:var(--accent-600)}
+  .mb-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:16px}
+  .stat{background:var(--ink-50);border:1px solid var(--ink-100);border-radius:10px;padding:12px}
+  .stat .k{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-500);font-weight:600}
+  .stat .v{font-family:"Anek Tamil";font-size:1.35rem;font-weight:700;color:var(--ink-900);margin-top:2px}
+  .mb-rows{padding:0 16px 16px;display:flex;flex-direction:column;gap:8px}
+  .row{display:flex;justify-content:space-between;align-items:center;font-size:.84rem;padding:10px 12px;border:1px solid var(--ink-100);border-radius:9px}
+  .row .dot{width:8px;height:8px;border-radius:50%;background:var(--accent-500);display:inline-block;margin-right:8px}
+  .row .muted{color:var(--ink-500)}
+  .row b{font-weight:600;color:var(--ink-900)}
+
+  /* logos strip */
+  .strip{padding:28px 0;border-bottom:1px solid var(--ink-200);background:#fff}
+  .strip .wrap{display:flex;align-items:center;justify-content:center;gap:2.5rem;flex-wrap:wrap;color:var(--ink-400);font-size:.85rem;font-weight:500}
+  .strip b{color:var(--ink-700)}
+
+  /* ---------- Sections ---------- */
+  section.block{padding:92px 0}
+  .sec-head{text-align:center;max-width:640px;margin:0 auto 56px}
+  .sec-head .kicker{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-600);margin-bottom:.8rem}
+  .sec-head h2{font-size:clamp(1.9rem,3.5vw,2.6rem);font-weight:700;color:var(--ink-900);margin-bottom:1rem}
+  .sec-head p{font-size:1.08rem;color:var(--ink-600)}
+
+  .features{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:880px){.features{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.features{grid-template-columns:1fr}}
+  .feat{background:#fff;border:1px solid var(--ink-200);border-radius:16px;padding:26px;transition:all .18s;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+  .feat:hover{transform:translateY(-3px);box-shadow:0 18px 40px -22px rgba(15,23,42,.22);border-color:var(--accent-300)}
+  .feat .ico{width:46px;height:46px;border-radius:12px;background:var(--accent-50);color:var(--accent-600);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+  .feat .ico svg{width:24px;height:24px}
+  .feat h3{font-size:1.18rem;font-weight:600;color:var(--ink-900);margin-bottom:.5rem}
+  .feat p{font-size:.95rem;color:var(--ink-600)}
+
+  /* ---------- App showcases ---------- */
+  .show{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center;margin-bottom:84px}
+  .show:last-child{margin-bottom:0}
+  .show.rev .show-copy{order:2}
+  @media(max-width:900px){.show{grid-template-columns:1fr;gap:32px}.show.rev .show-copy{order:0}}
+  .show-copy .tag{display:inline-block;font-size:.74rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--accent-600);background:var(--accent-50);padding:.35rem .8rem;border-radius:999px;margin-bottom:1rem}
+  .show-copy h3{font-family:"Anek Tamil";font-size:clamp(1.6rem,2.8vw,2.1rem);font-weight:700;color:var(--ink-900);letter-spacing:-.02em;margin-bottom:.9rem}
+  .show-copy p{font-size:1.04rem;color:var(--ink-600);margin-bottom:1.3rem}
+  .show-copy ul{list-style:none;display:flex;flex-direction:column;gap:.7rem}
+  .show-copy li{display:flex;gap:.6rem;align-items:flex-start;font-size:.96rem;color:var(--ink-700)}
+  .show-copy li .ck{flex-shrink:0;width:22px;height:22px;border-radius:7px;background:var(--accent-50);color:var(--accent-600);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700}
+
+  /* reusable app window */
+  .win{background:#fff;border:1px solid var(--ink-200);border-radius:16px;box-shadow:0 34px 64px -36px rgba(15,23,42,.4);overflow:hidden}
+  .win-bar{display:flex;align-items:center;gap:.4rem;padding:11px 14px;border-bottom:1px solid var(--ink-100);background:var(--ink-50)}
+  .win-bar i{width:11px;height:11px;border-radius:50%;background:var(--ink-200)}
+  .win-bar .ttl{margin-left:8px;font-size:.78rem;color:var(--ink-500);font-weight:600}
+
+  /* checkout screen */
+  .co{display:grid;grid-template-columns:1.3fr 1fr}
+  .co .left{padding:15px;border-right:1px solid var(--ink-100)}
+  .co .search{display:flex;align-items:center;gap:8px;background:var(--ink-50);border:1px solid var(--ink-200);border-radius:9px;padding:9px 11px;font-size:.76rem;color:var(--ink-500);margin-bottom:12px}
+  .co .search svg{width:15px;height:15px;color:var(--accent-600)}
+  .co .pg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .co .pc{border:1px solid var(--ink-200);border-radius:9px;padding:9px}
+  .co .pc .sw{height:32px;border-radius:6px;background:linear-gradient(135deg,var(--accent-100),var(--accent-50));margin-bottom:7px;display:flex;align-items:center;justify-content:center;color:var(--accent-600)}
+  .co .pc .n{font-size:.72rem;font-weight:600;color:var(--ink-900);line-height:1.2}
+  .co .pc .p{font-size:.72rem;color:var(--ink-500);margin-top:2px}
+  .co .right{background:var(--ink-50);padding:15px;display:flex;flex-direction:column}
+  .co .ch{font-family:"Anek Tamil";font-weight:600;font-size:1rem;color:var(--ink-900);display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+  .co .ch .bg{font-size:.64rem;font-weight:600;background:var(--accent-50);color:var(--accent-600);padding:3px 8px;border-radius:999px}
+  .co .ci{display:flex;justify-content:space-between;font-size:.78rem;padding:7px 0;border-bottom:1px solid var(--ink-200)}
+  .co .ci .q{color:var(--accent-600);font-weight:700;margin-right:6px}
+  .co .ci b{color:var(--ink-900);font-weight:600}
+  .co .sum{margin-top:auto;padding-top:10px}
+  .co .sl{display:flex;justify-content:space-between;font-size:.78rem;color:var(--ink-500);margin-bottom:5px}
+  .co .sl.g{font-family:"Anek Tamil";font-size:1.1rem;font-weight:700;color:var(--ink-900);border-top:1px solid var(--ink-200);padding-top:8px;margin:6px 0 10px}
+  .co .pay{display:flex;gap:7px}
+  .co .pay b{flex:1;text-align:center;font-size:.76rem;font-weight:600;padding:8px;border-radius:8px;border:1px solid var(--ink-200);color:var(--ink-700);background:#fff}
+  .co .pay b.on{background:var(--grad-cta);color:#fff;border:0}
+
+  /* products table screen */
+  .tbl{width:100%;border-collapse:collapse;font-size:.82rem}
+  .tbl th{text-align:left;font-size:.64rem;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-500);font-weight:600;padding:11px 16px;border-bottom:1px solid var(--ink-200);background:var(--ink-50)}
+  .tbl td{padding:11px 16px;border-bottom:1px solid var(--ink-100);color:var(--ink-600);vertical-align:middle}
+  .tbl .pn{font-weight:600;color:var(--ink-900)}
+  .tbl .sku{font-size:.7rem;color:var(--ink-400)}
+  .tbl tr:last-child td{border-bottom:0}
+  .schip{display:inline-block;font-size:.68rem;font-weight:600;padding:3px 9px;border-radius:999px}
+  .schip.ok{background:#ecfdf5;color:#059669}
+  .schip.low{background:#fffbeb;color:#d97706}
+  .schip.out{background:#fef2f2;color:#dc2626}
+
+  /* analytics screen */
+  .an{padding:16px}
+  .an .srow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+  .an .st{background:var(--ink-50);border:1px solid var(--ink-100);border-radius:10px;padding:11px}
+  .an .st .k{font-size:.64rem;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-500);font-weight:600}
+  .an .st .v{font-family:"Anek Tamil";font-size:1.15rem;font-weight:700;color:var(--ink-900);margin-top:2px}
+  .an .chart{display:flex;align-items:flex-end;justify-content:space-between;gap:7px;height:128px;padding:14px 14px 8px;border:1px solid var(--ink-100);border-radius:10px}
+  .an .col{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
+  .an .col .bar{width:100%;background:linear-gradient(180deg,var(--accent-400),var(--accent-600));border-radius:5px 5px 0 0}
+  .an .col .lb{font-size:.62rem;color:var(--ink-400);font-weight:600}
+
+  /* ---------- Mobile & tablet devices ---------- */
+  .devwrap{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:30px;margin-top:8px}
+  @media(max-width:980px){.devwrap{gap:22px}}
+
+  .phone{flex-shrink:0;width:232px;background:#0c0b0e;border-radius:36px;padding:8px;box-shadow:0 50px 80px -42px rgba(13,3,32,.7),0 10px 24px -12px rgba(15,23,42,.3)}
+  .phone.tl{transform:rotate(-3deg)}
+  .phone.tr{transform:rotate(3deg)}
+  @media(max-width:980px){.phone.tl,.phone.tr{transform:none}}
+  .scr{position:relative;display:flex;flex-direction:column;background:#f4f4f6;border-radius:29px;overflow:hidden;aspect-ratio:1170/2532}
+  .scr .shot{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+  .island{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:74px;height:17px;background:#0c0b0e;border-radius:999px;z-index:8}
+  .mstat{display:flex;justify-content:space-between;align-items:center;padding:9px 17px 2px;font-size:11px;font-weight:700;color:#0c0b0e}
+  .mstat .r{display:flex;align-items:center;gap:5px}
+  .mapp{flex:1;overflow:hidden;padding:3px 13px 0}
+  .mhd{display:flex;justify-content:space-between;align-items:flex-start;margin:5px 0 9px}
+  .mhd .sub{font-size:9.5px;font-weight:700;letter-spacing:.07em;color:var(--ink-400)}
+  .mhd .ti{font-family:"Anek Tamil";font-weight:700;font-size:19px;line-height:1.05;color:#0c0b0e}
+  .mon{display:inline-flex;align-items:center;gap:4px;background:#d1fae5;color:#065f46;font-weight:700;font-size:10px;padding:4px 8px;border-radius:999px;white-space:nowrap}
+  .mon .d{width:6px;height:6px;border-radius:50%;background:#10b981}
+  .mon svg{width:11px;height:11px}
+  .msr{display:flex;gap:7px;margin-bottom:10px}
+  .msearch{flex:1;display:flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--ink-200);border-radius:11px;padding:9px 10px;font-size:11px;color:var(--ink-400)}
+  .msearch svg{width:13px;height:13px;flex-shrink:0}
+  .mscan{width:38px;background:var(--grad-cta);border-radius:11px;display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0}
+  .mscan svg{width:17px;height:17px}
+  .mpg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .mpc{background:#fff;border-radius:13px;padding:11px;box-shadow:0 1px 2px rgba(15,23,42,.05)}
+  .mpc .n{font-weight:700;font-size:10.5px;color:#0c0b0e}
+  .mpc .p{color:var(--accent-600);font-weight:800;font-size:12px;margin-top:8px}
+  .mcart{background:#fff;border-radius:15px;padding:12px;margin-top:9px;box-shadow:0 1px 3px rgba(15,23,42,.06)}
+  .mcart h5{font-family:"Anek Tamil";font-weight:700;font-size:13px;color:#0c0b0e;margin-bottom:8px}
+  .mcli{display:flex;align-items:center;gap:8px;background:var(--ink-50);border:1px solid var(--ink-100);border-radius:10px;padding:7px 9px;margin-bottom:8px}
+  .mcli .av{width:24px;height:24px;border-radius:7px;background:var(--accent-100);color:var(--accent-600);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .mcli .av svg{width:13px;height:13px}
+  .mcli .cl{font-size:8.5px;font-weight:700;letter-spacing:.06em;color:var(--ink-400)}
+  .mcli .cv{font-size:11px;font-weight:700;color:#0c0b0e}
+  .mci{display:flex;justify-content:space-between;font-size:10px;padding:4px 0}
+  .mci .q{color:var(--accent-600);font-weight:700;margin-right:5px}
+  .mci b{color:#0c0b0e;font-weight:600}
+  .mtot{border-top:1px solid var(--ink-100);margin-top:5px;padding-top:7px}
+  .mtl{display:flex;justify-content:space-between;font-size:10px;color:var(--ink-500);margin-bottom:3px}
+  .mtl.g{font-size:13.5px;font-weight:800;color:#0c0b0e;margin-top:4px}
+  .mpay{margin-top:9px;background:var(--grad-cta);color:#fff;text-align:center;font-weight:700;font-size:11.5px;padding:10px;border-radius:12px}
+  .mhero{position:relative;overflow:hidden;background:var(--grad-dark);border-radius:15px;padding:14px;color:#fff;margin-bottom:10px}
+  .mhero .hb{position:absolute;width:90px;height:90px;border-radius:50%;background:#4f46e5;filter:blur(26px);opacity:.45;top:-22px;right:-12px}
+  .mhero .hl{font-size:9px;font-weight:700;letter-spacing:.09em;color:rgba(255,255,255,.6);position:relative}
+  .mhero .nm{font-family:"Anek Tamil";font-weight:700;font-size:18px;margin:2px 0 8px;position:relative}
+  .mhero .role{display:inline-block;background:rgba(99,102,241,.3);border:1px solid rgba(165,180,252,.45);color:#c7d2fe;font-size:10px;font-weight:700;padding:3px 11px;border-radius:999px;position:relative}
+  .mstg{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .mst{background:#fff;border-radius:13px;padding:12px;box-shadow:0 1px 2px rgba(15,23,42,.05)}
+  .mst .k{display:flex;justify-content:space-between;align-items:center;font-size:8px;font-weight:700;letter-spacing:.02em;color:var(--ink-400)}
+  .mst .k svg{width:12px;height:12px;color:var(--accent-500)}
+  .mst .k svg.warn{color:#dc2626}
+  .mst .v{font-family:"Anek Tamil";font-weight:800;font-size:17px;color:#0c0b0e;margin-top:6px}
+  .mst .v.red{color:#dc2626}
+  .mlow{background:#fff;border-radius:13px;padding:13px;margin-top:9px;box-shadow:0 1px 2px rgba(15,23,42,.05)}
+  .mlow .h{display:flex;align-items:center;gap:7px;font-weight:800;font-size:10px;letter-spacing:.03em;color:#0c0b0e;margin-bottom:11px}
+  .mlow .h svg{width:14px;height:14px;color:var(--ink-500)}
+  .mlow .it{display:flex;justify-content:space-between;align-items:center}
+  .mlow .it .nm{font-weight:700;font-size:12px;color:#0c0b0e}
+  .mlow .it .sk{font-size:10px;color:var(--ink-400);margin-top:1px}
+  .mlow .it .badge{background:#fee2e2;color:#dc2626;font-weight:800;font-size:11px;padding:5px 14px;border-radius:999px}
+  .mtabs{display:flex;justify-content:space-around;align-items:center;background:#fff;border-top:1px solid var(--ink-100);padding:8px 4px 11px}
+  .mtab{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:9px;font-weight:600;color:var(--ink-400);position:relative}
+  .mtab svg{width:19px;height:19px}
+  .mtab.on{color:#0c0b0e}
+  .mtab.on .dot{position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:var(--accent-600)}
+
+  /* tablet — products / stock */
+  .tablet{flex-shrink:0;width:500px;background:#0c0b0e;border-radius:26px;padding:11px;box-shadow:0 50px 90px -40px rgba(13,3,32,.7),0 12px 28px -14px rgba(15,23,42,.3)}
+  @media(max-width:560px){.tablet{width:100%;max-width:370px}}
+  .tscr{position:relative;background:#f4f4f6;border-radius:16px;overflow:hidden;aspect-ratio:478/344;display:flex;flex-direction:column}
+  .thd{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#fff;border-bottom:1px solid var(--ink-100)}
+  .thd .ti{font-family:"Anek Tamil";font-weight:700;font-size:16px;color:#0c0b0e}
+  .thd .tsub{font-size:8.5px;font-weight:700;letter-spacing:.07em;color:var(--ink-400)}
+  .tbody{flex:1;overflow:hidden}
+  .tscr .tbl{font-size:.72rem}
+  .tscr .tbl th{font-size:.58rem;padding:9px 14px}
+  .tscr .tbl td{padding:9px 14px}
+  .tscr .tbl .sku{font-size:.62rem}
+  .tscr .schip{font-size:.62rem;padding:3px 8px}
+
+  /* why offline band */
+  .band{background:var(--grad-dark);color:#fff;border-radius:24px;padding:60px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;position:relative;overflow:hidden}
+  @media(max-width:820px){.band{grid-template-columns:1fr;padding:40px}}
+  .band .blob{position:absolute;width:380px;height:380px;border-radius:50%;background:#4f46e5;filter:blur(90px);opacity:.35;top:-120px;right:-80px}
+  .band h2{font-size:clamp(1.8rem,3vw,2.4rem);position:relative;margin-bottom:1.1rem}
+  .band p{color:rgba(255,255,255,.78);font-size:1.05rem;position:relative;margin-bottom:1.5rem}
+  .checks{list-style:none;display:flex;flex-direction:column;gap:1rem;position:relative}
+  .checks li{display:flex;gap:.9rem;align-items:flex-start;font-size:1rem}
+  .checks .ck{flex-shrink:0;width:26px;height:26px;border-radius:8px;background:rgba(99,102,241,.25);border:1px solid rgba(165,180,252,.4);display:flex;align-items:center;justify-content:center;color:#c7d2fe}
+  .checks b{color:#fff}
+  .checks span{color:rgba(255,255,255,.72);display:block;font-size:.9rem}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;counter-reset:s}
+  @media(max-width:760px){.steps{grid-template-columns:1fr}}
+  .step{position:relative;padding:28px;background:#fff;border:1px solid var(--ink-200);border-radius:16px}
+  .step::before{counter-increment:s;content:counter(s);position:absolute;top:-18px;left:24px;width:40px;height:40px;border-radius:11px;background:var(--grad-cta);color:#fff;font-family:"Anek Tamil";font-weight:700;font-size:1.25rem;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px -8px rgba(79,70,229,.6)}
+  .step h3{margin:14px 0 .5rem;font-size:1.18rem;color:var(--ink-900)}
+  .step p{font-size:.95rem;color:var(--ink-600)}
+
+  /* CTA */
+  .final{text-align:center;background:var(--grad-dark);color:#fff;padding:90px 0;position:relative;overflow:hidden}
+  .final .blob{position:absolute;width:560px;height:560px;border-radius:50%;background:#6366f1;filter:blur(110px);opacity:.32;left:50%;top:50%;transform:translate(-50%,-50%)}
+  .final h2{font-size:clamp(2rem,4vw,3rem);position:relative;margin-bottom:1rem}
+  .final p{color:rgba(255,255,255,.78);font-size:1.15rem;position:relative;margin-bottom:2.2rem;max-width:48ch;margin-left:auto;margin-right:auto}
+  .final .hero-cta{justify-content:center;position:relative}
+
+  footer{background:#0a090c;color:rgba(255,255,255,.5);padding:40px 0;font-size:.88rem}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+  footer .wordmark{height:26px;display:block}
+  footer .by{display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:rgba(255,255,255,.45)}
+  footer .by img{height:18px;display:block;opacity:.8}
+
+  /* ============================================================
+     Intro — first-load animation
+     ============================================================ */
+  /* full-screen brand curtain that reveals the page */
+  .intro{position:fixed;inset:0;z-index:200;display:grid;place-items:center;
+    padding:24px;background:var(--grad-dark);
+    animation:introOut .7s cubic-bezier(.7,0,.25,1) 1.2s forwards}
+  .intro-inner{display:flex;flex-direction:column;align-items:center;gap:1.15rem;
+    width:100%;max-width:520px}
+  .intro-logo{display:block;width:min(440px,76vw);height:auto;
+    opacity:0;transform:translateY(12px);
+    animation:introBrand .8s cubic-bezier(.22,1,.36,1) .1s forwards}
+  .intro-line{width:0;height:2px;border-radius:2px;
+    background:linear-gradient(90deg,#a5b4fc,#6366f1);
+    animation:introLine 1.1s cubic-bezier(.6,0,.2,1) .2s forwards}
+  @keyframes introBrand{to{opacity:1;transform:none}}
+  @keyframes introLine{0%{width:0;opacity:.2}60%{opacity:1}100%{width:min(220px,50vw);opacity:.9}}
+  @keyframes introOut{to{opacity:0;visibility:hidden}}
+
+  /* hero content rises in as the curtain lifts */
+  .hero .eyebrow,.hero h1,.hero .lead,.hero-cta,.hero-note,.mock{
+    opacity:0;animation:riseIn .85s cubic-bezier(.22,1,.36,1) forwards}
+  .hero .eyebrow{animation-delay:1.25s}
+  .hero h1{animation-delay:1.36s}
+  .hero .lead{animation-delay:1.5s}
+  .hero-cta{animation-delay:1.62s}
+  .hero-note{animation-delay:1.72s}
+  .mock{animation-delay:1.42s;animation-name:mockIn}
+  @keyframes riseIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+  @keyframes mockIn{from{opacity:0;transform:translateY(32px) scale(.97)}to{opacity:1;transform:none}}
+
+  /* already seen this session: skip the curtain, show instantly */
+  .intro-seen .intro{display:none}
+  .intro-seen .hero .eyebrow,.intro-seen .hero h1,.intro-seen .hero .lead,
+  .intro-seen .hero-cta,.intro-seen .hero-note,.intro-seen .mock{
+    animation:none;opacity:1;transform:none}
+
+  @media(prefers-reduced-motion:reduce){
+    .intro{display:none;animation:none}
+    .hero .eyebrow,.hero h1,.hero .lead,.hero-cta,.hero-note,.mock{
+      animation:none;opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<script>
+  // Show the intro curtain only on the first load of a session.
+  (function () {
+    try {
+      if (sessionStorage.getItem("inv-intro")) {
+        document.documentElement.classList.add("intro-seen");
+      } else {
+        sessionStorage.setItem("inv-intro", "1");
+      }
+    } catch (e) {}
+  })();
+</script>
+
+<!-- Intro curtain -->
+<div class="intro" aria-hidden="true">
+  <div class="intro-inner">
+    <img class="intro-logo" src="assets/logo.svg" alt="Inventra" />
+    <span class="intro-line"></span>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand"><span class="mark"><img src="assets/icon.svg" alt="Inventra" /></span>Inventra</div>
+    <nav class="nav-links">
+      <a href="#fonctions">Fonctionnalités</a>
+      <a href="#apercu">Aperçu</a>
+      <a href="#mobile">Mobile</a>
+      <a href="#hors-ligne">Hors ligne</a>
+      <a href="#demarrer">Démarrage</a>
+      <a href="#tarif">Licence</a>
+    </nav>
+    <a href="#demarrer" class="btn btn-primary" style="padding:.6rem 1.1rem">Demander une démo</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="blob blob1"></span><span class="blob blob2"></span>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">● Logiciel de caisse &amp; de stock</span>
+      <h1>Tenez votre boutique,<br><span class="hl">sans abonnement,<br>sans internet.</span></h1>
+      <p class="lead">Caisse, inventaire, clients et équipe réunis dans un seul logiciel — installé sur votre propre matériel.</p>
+      <div class="hero-cta">
+        <a href="#demarrer" class="btn btn-primary">Demander une démo →</a>
+        <a href="#fonctions" class="btn btn-ghost">Voir les fonctionnalités</a>
+      </div>
+      <div class="hero-note">
+        <span>✓ 100% hors ligne</span>
+        <span>✓ Plusieurs caisses en réseau</span>
+        <span>✓ Français &amp; anglais</span>
+      </div>
+    </div>
+
+    <!-- app mock -->
+    <div class="mock">
+      <div class="mock-bar"><i></i><i></i><i></i></div>
+      <div class="mock-body">
+        <div class="mb-top"><b>Tableau de bord</b><span class="pill">Aujourd'hui</span></div>
+        <div class="mb-stats">
+          <div class="stat"><div class="k">Recettes</div><div class="v">12 480 DH</div></div>
+          <div class="stat"><div class="k">Ventes</div><div class="v">86</div></div>
+          <div class="stat"><div class="k">Stock bas</div><div class="v">4</div></div>
+        </div>
+        <div class="mb-rows">
+          <div class="row"><span><span class="dot"></span>Vente #1042 — Carte</span><b>240,00 DH</b></div>
+          <div class="row"><span><span class="dot"></span>Vente #1041 — Espèces</span><b>78,50 DH</b></div>
+          <div class="row"><span class="muted"><span class="dot" style="background:#f59e0b"></span>Stock bas — Lait 1L</span><span class="muted">3 restants</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- trust strip -->
+<div class="strip">
+  <div class="wrap">
+    <span>Pensé pour&nbsp; <b>épiceries</b></span><span><b>boutiques de prêt-à-porter</b></span>
+    <span><b>quincailleries</b></span><span><b>librairies</b></span><span><b>cosmétiques &amp; parfumeries</b></span>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="block" id="fonctions">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Tout au même endroit</div>
+      <h2>Un seul logiciel pour faire tourner la boutique</h2>
+      <p>Fini les carnets, les tableurs et les outils éparpillés. Inventra réunit la vente, le stock et la gestion dans une interface claire.</p>
+    </div>
+    <div class="features">
+
+      <div class="feat">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h20l-1.5 9a2 2 0 0 1-2 1.7H5.5a2 2 0 0 1-2-1.7Z"/><path d="M6 7V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"/></svg></div>
+        <h3>Caisse rapide</h3>
+        <p>Scannez le code-barres ou recherchez un produit, encaissez en espèces ou par carte, partagez le paiement et imprimez le ticket (58 / 80 mm).</p>
+      </div>
+
+      <div class="feat">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg></div>
+        <h3>Stock en temps réel</h3>
+        <p>Niveaux de stock, alertes de seuil bas, catégories de taxe et un historique complet de chaque mouvement de stock.</p>
+      </div>
+
+      <div class="feat">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Clients &amp; fidélité</h3>
+        <p>Constituez votre fichier clients, suivez les achats et les points de fidélité, et personnalisez l'accueil au comptoir.</p>
+      </div>
+
+      <div class="feat">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div>
+        <h3>Rapports &amp; analyses</h3>
+        <p>Chiffre d'affaires, marge, dépenses, meilleurs produits, performance par caissier — et un Z-Report de clôture de journée.</p>
+      </div>
+
+      <div class="feat">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-7m7 0a2 2 0 0 0-2-2h-3l-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2Z"/></svg></div>
+        <h3>Achats &amp; fournisseurs</h3>
+        <p>Créez des bons de commande, réceptionnez la marchandise pour mettre le stock à jour, et gardez la trace de chaque fournisseur.</p>
+      </div>
+
+      <div class="feat">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M7 15h0M2 9.5h20"/></svg></div>
+        <h3>Équipe &amp; caisse</h3>
+        <p>Rôles admin / caissier, connexion par carte NFC, ouverture et clôture de caisse, et un code PIN manager pour les remboursements.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- APP SHOWCASE -->
+<section class="block" id="apercu" style="background:#fff;padding-top:40px">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Aperçu de l'application</div>
+      <h2>Pensé pour aller vite au comptoir</h2>
+      <p>Une interface claire, sans surcharge. Voici à quoi ressemble une journée avec Inventra.</p>
+    </div>
+
+    <!-- 1 — Checkout -->
+    <div class="show">
+      <div class="show-copy">
+        <span class="tag">Caisse</span>
+        <h3>Encaissez en quelques secondes</h3>
+        <p>Scannez un code-barres ou cherchez un produit, ajustez les quantités et choisissez le mode de paiement. Le ticket s'imprime sur votre imprimante thermique.</p>
+        <ul>
+          <li><span class="ck">✓</span>Recherche &amp; scan instantanés</li>
+          <li><span class="ck">✓</span>Espèces, carte ou paiement partagé</li>
+          <li><span class="ck">✓</span>Remises par article et mise en attente du panier</li>
+        </ul>
+      </div>
+      <div class="show-win">
+        <div class="win">
+          <div class="win-bar"><i></i><i></i><i></i><span class="ttl">Inventra — Caisse</span></div>
+          <div class="co">
+            <div class="left">
+              <div class="search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+                Scanner un code-barres ou rechercher…
+              </div>
+              <div class="pg">
+                <div class="pc"><div class="sw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h18M3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6M8 6a4 4 0 0 1 8 0"/></svg></div><div class="n">Café 250g</div><div class="p">42,00 DH</div></div>
+                <div class="pc"><div class="sw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 2h8l-1 5H9ZM9 7v13a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V7"/></svg></div><div class="n">Lait 1L</div><div class="p">9,50 DH</div></div>
+                <div class="pc"><div class="sw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16l-1.2 12.3a2 2 0 0 1-2 1.7H7.2a2 2 0 0 1-2-1.7Z"/><path d="M8 7a4 4 0 0 1 8 0"/></svg></div><div class="n">Pain</div><div class="p">3,00 DH</div></div>
+                <div class="pc"><div class="sw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 9h6"/></svg></div><div class="n">Jus 1L</div><div class="p">14,00 DH</div></div>
+                <div class="pc"><div class="sw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></div><div class="n">Cahier</div><div class="p">12,00 DH</div></div>
+                <div class="pc"><div class="sw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2a7 7 0 0 0-7 7c0 3 2 4 2 7h10c0-3 2-4 2-7a7 7 0 0 0-7-7Z"/><path d="M9 22h6"/></svg></div><div class="n">Ampoule</div><div class="p">25,00 DH</div></div>
+              </div>
+            </div>
+            <div class="right">
+              <div class="ch">Panier <span class="bg">3 articles</span></div>
+              <div class="ci"><span><span class="q">2×</span>Café 250g</span><b>84,00</b></div>
+              <div class="ci"><span><span class="q">1×</span>Lait 1L</span><b>9,50</b></div>
+              <div class="ci"><span><span class="q">3×</span>Pain</span><b>9,00</b></div>
+              <div class="sum">
+                <div class="sl"><span>Sous-total</span><span>102,50</span></div>
+                <div class="sl"><span>TVA</span><span>10,25</span></div>
+                <div class="sl g"><span>Total</span><span>112,75 DH</span></div>
+                <div class="pay"><b class="on">Espèces</b><b>Carte</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 — Products / stock -->
+    <div class="show rev">
+      <div class="show-copy">
+        <span class="tag">Produits &amp; stock</span>
+        <h3>Votre inventaire toujours à jour</h3>
+        <p>Chaque vente met le stock à jour automatiquement. Repérez d'un coup d'œil les articles en rupture ou sous le seuil, avant que ça ne vous coûte une vente.</p>
+        <ul>
+          <li><span class="ck">✓</span>Alertes de stock bas et de rupture</li>
+          <li><span class="ck">✓</span>SKU, code-barres et catégories de taxe</li>
+          <li><span class="ck">✓</span>Historique complet des mouvements</li>
+        </ul>
+      </div>
+      <div class="show-win">
+        <div class="win">
+          <div class="win-bar"><i></i><i></i><i></i><span class="ttl">Inventra — Produits</span></div>
+          <table class="tbl">
+            <thead><tr><th>Produit</th><th>Prix</th><th>Stock</th><th>État</th></tr></thead>
+            <tbody>
+              <tr><td><div class="pn">Café moulu 250g</div><div class="sku">SKU · 6111245</div></td><td>42,00 DH</td><td>128</td><td><span class="schip ok">En stock</span></td></tr>
+              <tr><td><div class="pn">Lait demi-écrémé 1L</div><div class="sku">SKU · 6111980</div></td><td>9,50 DH</td><td>3</td><td><span class="schip low">Stock bas</span></td></tr>
+              <tr><td><div class="pn">Huile d'olive 1L</div><div class="sku">SKU · 6112733</div></td><td>78,00 DH</td><td>0</td><td><span class="schip out">Rupture</span></td></tr>
+              <tr><td><div class="pn">Sucre blanc 1kg</div><div class="sku">SKU · 6110042</div></td><td>11,00 DH</td><td>64</td><td><span class="schip ok">En stock</span></td></tr>
+              <tr><td><div class="pn">Thé vert 100g</div><div class="sku">SKU · 6113561</div></td><td>22,00 DH</td><td>7</td><td><span class="schip low">Stock bas</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 — Analytics -->
+    <div class="show">
+      <div class="show-copy">
+        <span class="tag">Analyses</span>
+        <h3>Sachez exactement ce qui marche</h3>
+        <p>Chiffre d'affaires, marge, meilleurs produits et performance par caissier — sur la journée, la semaine ou l'année. Et un Z-Report propre à chaque clôture.</p>
+        <ul>
+          <li><span class="ck">✓</span>Revenu et marge en un coup d'œil</li>
+          <li><span class="ck">✓</span>Top produits &amp; ventes par caissier</li>
+          <li><span class="ck">✓</span>Répartition par mode de paiement</li>
+        </ul>
+      </div>
+      <div class="show-win">
+        <div class="win">
+          <div class="win-bar"><i></i><i></i><i></i><span class="ttl">Inventra — Analyses</span></div>
+          <div class="an">
+            <div class="srow">
+              <div class="st"><div class="k">Revenu (7 j)</div><div class="v">84 200 DH</div></div>
+              <div class="st"><div class="k">Marge brute</div><div class="v">31 %</div></div>
+              <div class="st"><div class="k">Ventes</div><div class="v">612</div></div>
+            </div>
+            <div class="chart">
+              <div class="col"><div class="bar" style="height:48%"></div><div class="lb">Lun</div></div>
+              <div class="col"><div class="bar" style="height:62%"></div><div class="lb">Mar</div></div>
+              <div class="col"><div class="bar" style="height:54%"></div><div class="lb">Mer</div></div>
+              <div class="col"><div class="bar" style="height:78%"></div><div class="lb">Jeu</div></div>
+              <div class="col"><div class="bar" style="height:91%"></div><div class="lb">Ven</div></div>
+              <div class="col"><div class="bar" style="height:100%"></div><div class="lb">Sam</div></div>
+              <div class="col"><div class="bar" style="height:40%"></div><div class="lb">Dim</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MOBILE & TABLET -->
+<section class="block" id="mobile">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Mobile &amp; tablette</div>
+      <h2>La même boutique, dans votre poche et en rayon</h2>
+      <p>Inventra existe aussi en application <b>mobile</b> et <b>tablette</b>. Connectez l'appareil à votre réseau et encaissez ou faites l'inventaire depuis n'importe où dans la boutique — tant que vous êtes sur le même Wi-Fi, tout reste synchronisé avec la caisse principale.</p>
+    </div>
+
+    <div class="devwrap">
+
+      <!-- PHONE — Caisse (screenshot) -->
+      <div class="phone tl">
+        <div class="scr">
+          <div class="island"></div>
+          <img class="shot" src="assets/Checkout.PNG" alt="Caisse — application mobile Inventra" loading="lazy" />
+        </div>
+      </div>
+
+      <!-- TABLET — Produits / stock -->
+      <div class="tablet">
+        <div class="tscr">
+          <div class="thd"><div><div class="tsub">INVENTRA SHOP</div><div class="ti">Produits</div></div><span class="mon"><span class="d"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 10h1a3 3 0 0 1 0 6H6a4 4 0 0 1-1-7.9A5 5 0 0 1 15 7"/></svg>Online</span></div>
+          <div class="tbody">
+            <table class="tbl">
+              <thead><tr><th>Produit</th><th>Prix</th><th>Stock</th><th>État</th></tr></thead>
+              <tbody>
+                <tr><td><div class="pn">Cahier 200p</div><div class="sku">SKU · 6111245</div></td><td>DH18.00</td><td>142</td><td><span class="schip ok">En stock</span></td></tr>
+                <tr><td><div class="pn">Chargeur USB-C</div><div class="sku">SKU · 7841</div></td><td>DH85.00</td><td>1</td><td><span class="schip low">Stock bas</span></td></tr>
+                <tr><td><div class="pn">Clé USB 32 Go</div><div class="sku">SKU · 6112733</div></td><td>DH60.00</td><td>24</td><td><span class="schip ok">En stock</span></td></tr>
+                <tr><td><div class="pn">Eau 1.5L (pack)</div><div class="sku">SKU · 6110042</div></td><td>DH48.00</td><td>0</td><td><span class="schip out">Rupture</span></td></tr>
+                <tr><td><div class="pn">Stylo bleu</div><div class="sku">SKU · 6113561</div></td><td>DH4.00</td><td>320</td><td><span class="schip ok">En stock</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHONE — Tableau (screenshot) -->
+      <div class="phone tr">
+        <div class="scr">
+          <div class="island"></div>
+          <img class="shot" src="assets/Dashboard.PNG" alt="Tableau de bord — application mobile Inventra" loading="lazy" />
+        </div>
+      </div>
+
+    </div>
+
+    <ul class="checks" style="flex-direction:row;flex-wrap:wrap;justify-content:center;gap:1.4rem;margin-top:48px">
+      <li style="max-width:240px"><span class="ck" style="background:var(--accent-50);color:var(--accent-600);border-color:var(--accent-100)">✓</span><div><b style="color:var(--ink-900)">Encaissez en rayon</b><span style="color:var(--ink-500)">depuis une tablette ou un mobile, loin du comptoir.</span></div></li>
+      <li style="max-width:240px"><span class="ck" style="background:var(--accent-50);color:var(--accent-600);border-color:var(--accent-100)">✓</span><div><b style="color:var(--ink-900)">Faites l'inventaire au scanner</b><span style="color:var(--ink-500)">comptez et ajustez le stock, le téléphone à la main.</span></div></li>
+      <li style="max-width:240px"><span class="ck" style="background:var(--accent-50);color:var(--accent-600);border-color:var(--accent-100)">✓</span><div><b style="color:var(--ink-900)">Synchronisé sur le réseau</b><span style="color:var(--ink-500)">en direct avec la caisse principale — sans cloud.</span></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- OFFLINE BAND -->
+<section class="block" id="hors-ligne" style="padding-top:0">
+  <div class="wrap">
+    <div class="band">
+      <span class="blob"></span>
+      <div>
+        <div class="kicker" style="color:var(--accent-300)">Conçu pour le terrain</div>
+        <h2>Aucune coupure internet ne vous arrête</h2>
+        <p>Inventra vit sur vos appareils, pas dans le cloud. Une seule activation en ligne, puis tout fonctionne en local — même quand le réseau tombe.</p>
+        <a href="#demarrer" class="btn btn-primary">Parler à un conseiller →</a>
+      </div>
+      <ul class="checks">
+        <li><span class="ck">✓</span><div><b>100% hors ligne</b><span>Vos données restent sur votre matériel. Pas de connexion permanente exigée.</span></div></li>
+        <li><span class="ck">✓</span><div><b>Plusieurs caisses sur le même Wi-Fi</b><span>Un appareil « serveur » détient la base, les autres se connectent par code à 6 chiffres ou QR.</span></div></li>
+        <li><span class="ck">✓</span><div><b>Sauvegarde automatique</b><span>Une copie horodatée de votre base chaque nuit, en silence et sans abonnement.</span></div></li>
+        <li><span class="ck">✓</span><div><b>Vos données vous appartiennent</b><span>Sauvegarde, restauration et export CSV en un clic — sans verrouillage cloud.</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="block" id="demarrer" style="background:#fff;padding-top:40px">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Opérationnel le jour même</div>
+      <h2>Trois étapes, et vous encaissez</h2>
+      <p>Pas de paramétrage interminable. Installez, configurez votre boutique, et ouvrez la caisse.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><h3>Installez</h3><p>Une application de bureau légère pour Windows. Pas de serveur cloud à louer, pas de configuration réseau compliquée.</p></div>
+      <div class="step"><h3>Configurez</h3><p>L'assistant crée votre compte admin, votre boutique, vos taxes et importe un catalogue de démonstration pour démarrer vite.</p></div>
+      <div class="step"><h3>Vendez</h3><p>Ajoutez vos produits, ouvrez la caisse et encaissez. Reliez d'autres appareils au même réseau quand vous voulez.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- LICENSE / TARIF -->
+<section class="block" id="tarif">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Licence simple</div>
+      <h2>Vous payez le logiciel, pas un abonnement sans fin</h2>
+      <p>Une clé d'activation livrée avec votre achat déverrouille l'appareil. Les fonctions avancées s'ajoutent selon vos besoins — sans piéger les bases derrière un péage.</p>
+    </div>
+    <div style="display:flex;justify-content:center">
+      <a href="#" class="btn btn-primary" style="font-size:1.05rem;padding:1rem 2rem">Demander un devis &amp; une démo →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <span class="blob"></span>
+  <div class="wrap">
+    <h2>Une façon moderne de tenir votre boutique.</h2>
+    <p>Stock, ventes et équipe au même endroit — installé chez vous, prêt à fonctionner hors ligne.</p>
+    <div class="hero-cta">
+      <a href="#" class="btn btn-primary">Demander une démo</a>
+      <a href="#fonctions" class="btn btn-ghost">Découvrir Inventra</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <img src="assets/logo.svg" class="wordmark" alt="Inventra" />
+    <div class="by">By <img src="assets/sovereign.svg" alt="Sovereign" /> Sovereign</div>
+    <div>© 2026 Inventra — Inventaire &amp; caisse hors ligne.</div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
 
-  <!-- Subdomain routing: on inventra.* / dentimo.* serve that product folder while keeping the bare URL. -->
+  <!-- Subdomain routing: on inventra.* / dentimo.* / lazymouse.* serve that product folder while keeping the bare URL. -->
   <script>
   (function () {
     var sub = location.hostname.split('.')[0];
-    if (sub !== 'inventra' && sub !== 'dentimo') return;
+    if (sub !== 'inventra' && sub !== 'dentimo' && sub !== 'lazymouse') return;
     // Hide the root page immediately so it doesn't flash before the product page loads.
     document.documentElement.style.visibility = 'hidden';
     fetch('/' + sub + '/index.html')

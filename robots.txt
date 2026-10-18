@@ -8,3 +8,4 @@ Disallow: /inventra/posters/
 Sitemap: https://sovereignco.net/sitemap.xml
 Sitemap: https://inventra.sovereignco.net/sitemap-inventra.xml
 Sitemap: https://dentimo.sovereignco.net/sitemap-dentimo.xml
+Sitemap: https://lazymouse.sovereignco.net/sitemap-lazymouse.xml
